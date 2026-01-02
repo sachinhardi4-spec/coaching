@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -59,7 +59,7 @@ import { CommonModule } from '@angular/common';
     }
   `]
 })
-export class NavigationComponent {
+export class NavigationComponent implements OnInit {
   @Output() pageChange = new EventEmitter<string>();
   currentPage = 'home';
   mobileMenuOpen = false;
@@ -68,5 +68,10 @@ export class NavigationComponent {
     this.currentPage = page;
     this.mobileMenuOpen = false;
     this.pageChange.emit(page);
+  }
+
+  ngOnInit() {
+    // emit initial page so parent can sync and show default view
+    this.pageChange.emit(this.currentPage);
   }
 }
