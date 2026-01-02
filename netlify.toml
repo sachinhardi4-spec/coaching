@@ -1,0 +1,9 @@
+[build]
+  base = "coaching-app"
+  command = "npm install && npm run build"
+  publish = "dist/coaching-app/browser"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
